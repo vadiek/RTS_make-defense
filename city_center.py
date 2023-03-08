@@ -5,15 +5,17 @@ class City_center():
 
     def __init__(self, screen, centerx, centery, setlers):
         self.screen = screen
-        self.image = pygame.image.load('city_center.png')
+        self.image = pygame.image.load('image/city_center.png')
         self.rect = self.image.get_rect()  # определяем прямоугольник объекта
         self.screen_rect = screen.get_rect()  # определяем прямоугольник окна
         self.rect.centerx = centerx
         self.rect.centery = centery
-        self.spawn = False
+        self.movement = False # определяем способность объекта к движению
+        self.spawn = False # отвечает за спавн юнитов
         self.setlers = setlers
 
-    def upload(self):
+
+    def output(self):
         self.screen.blit(self.image, self.rect)
 
     def spawn_setl(self):

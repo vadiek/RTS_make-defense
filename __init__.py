@@ -4,6 +4,9 @@ import config
 from settlers import Settlers
 from city_center import City_center
 
+
+
+
 def run():
     pygame.init()
     screen = pygame.display.set_mode(config.scren_size)
@@ -14,13 +17,21 @@ def run():
 
 
     while True:
+        select_obj = 0
         clock.tick(config.FPS)
+
+#------------------------------------------------------------ отдел обработки событий
         func.events(screen, setlers, citieses)
         for i in citieses:
             i.spawn_setl()
-        screen.fill(config.bg_color)
-        for i in citieses:
-            i.upload()
         for i in setlers:
+            i.select()
+        all_object = setlers + citieses
+
+        func.move(select_obj)
+
+#------------------------------------------------------------- отдел рендеринга
+        screen.fill(config.bg_color)
+        for i in all_object:
             i.output()
         pygame.display.flip()
