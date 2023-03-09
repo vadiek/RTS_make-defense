@@ -3,6 +3,16 @@ from city_center import City_center
 
 def events(screen, settlers, citieses):
     for event in pygame.event.get():
+
+        for i in citieses:
+            i.spawn_setl()
+        for i in settlers:
+            i.select(event)
+        for i in settlers:
+            move(i, event)
+            i.update()
+#----------------------------------------------
+
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -18,28 +28,27 @@ def events(screen, settlers, citieses):
                 citieses[0].spawn = False
 
 
-def move(setl):
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
+def move(setl, event):
+    if event.type == pygame.KEYDOWN:
+        print('keystart')
+        if event.key == pygame.K_a:
+             setl.left_move = True
+        if event.key == pygame.K_d:
+             setl.right_move = True
+        if event.key == pygame.K_w:
+            setl.up_move = True
+        if event.key == pygame.K_s:
+            setl.down_move = True
 
-            if event.key == pygame.K_a:
-                setl.left_move = True
-            if event.key == pygame.K_d:
-                setl.right_move = True
-            if event.key == pygame.K_w:
-                setl.up_move = True
-            if event.key == pygame.K_s:
-                setl.down_move = True
-
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_a:
-                setl.left_move = False
-            if event.key == pygame.K_d:
-                setl.right_move = False
-            if event.key == pygame.K_w:
-                setl.up_move = False
-            if event.key == pygame.K_s:
-                setl.down_move = False
+    elif event.type == pygame.KEYUP:
+        if event.key == pygame.K_a:
+            setl.left_move = False
+        if event.key == pygame.K_d:
+            setl.right_move = False
+        if event.key == pygame.K_w:
+            setl.up_move = False
+        if event.key == pygame.K_s:
+            setl.down_move = False
 
 def select(self):
     for event in pygame.event.get():

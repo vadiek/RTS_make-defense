@@ -15,6 +15,7 @@ class Settlers():
         self.left_move = False
         self.up_move = False
         self.down_move = False
+        self.selected = False
 # у каждого объекта есть свой определенный прямоугольник, который имеет свои размеры, значит нажатие должно происходить в диапазоне
 # значений, рассмотрим ось x берем координату центра по оси и диапазон будет неаходиться в промежутке от координата - половина размера
 # до координата + половина размера
@@ -26,17 +27,21 @@ class Settlers():
 
 
     def update(self):
-        if self.right_move and (self.rect.right < self.screen_rect.right):
-            self.rect.centerx += 1
-        if self.left_move and (self.rect.left > 0):
-            self.rect.centerx -= 1
-        if self.up_move and (self.rect.top > 0):
-            self.rect.centery -= 1
-        if self.down_move and (self.rect.bottom < self.screen_rect.bottom):
-            self.rect.centery += 1
+        if self.selected:
+            if self.right_move and (self.rect.right < self.screen_rect.right):
+                self.rect.centerx += 1
+            if self.left_move and (self.rect.left > 0):
+                self.rect.centerx -= 1
+            if self.up_move and (self.rect.top > 0):
+                self.rect.centery -= 1
+            if self.down_move and (self.rect.bottom < self.screen_rect.bottom):
+                self.rect.centery += 1
 
-    def select(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                if self.grani[0] < event.pos[0] < self.grani[1] and self.grani[2] < event.pos[1] < self.grani[3]:
-                    print('i')
+    def select(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            print('proverka')
+            if self.grani[0] < event.pos[0] < self.grani[1] and self.grani[2] < event.pos[1] < self.grani[3]:
+                self.selected = True
+            else:
+                self.selected = False
+                print('shit')

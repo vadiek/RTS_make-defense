@@ -17,18 +17,11 @@ def run():
 
 
     while True:
-        select_obj = 0
         clock.tick(config.FPS)
 
 #------------------------------------------------------------ отдел обработки событий
         func.events(screen, setlers, citieses)
-        for i in citieses:
-            i.spawn_setl()
-        for i in setlers:
-            i.select()
         all_object = setlers + citieses
-
-        func.move(select_obj)
 
 #------------------------------------------------------------- отдел рендеринга
         screen.fill(config.bg_color)
