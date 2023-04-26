@@ -5,6 +5,7 @@ def events(screen, settlers, citieses):
     for event in pygame.event.get():
 
         for i in citieses:
+            i.select(event)
             i.spawn_setl()
         for i in settlers:
             i.select(event)

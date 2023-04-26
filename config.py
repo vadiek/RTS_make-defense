@@ -1,5 +1,6 @@
 bg_color = (0, 0, 0)
-scren_size = (1200, 800)
+scren_size = (1800, 1200)
+info_size = (1900, 200)
 game_name = 'RTS_first_try'
 FPS = 60
 

@@ -5,7 +5,7 @@ class Settlers():
     def __init__(self, screen, centerx, centery):
 
         self.screen = screen
-        self.image = pygame.image.load('image/settlers.png')
+        self.image = pygame.image.load('image/setler.png')
         self.rect = self.image.get_rect() #определяем прямоугольник объекта
         self.screen_rect = screen.get_rect() #определяем прямоугольник окна
         self.rect.centerx = centerx
@@ -29,19 +29,20 @@ class Settlers():
     def update(self):
         if self.selected:
             if self.right_move and (self.rect.right < self.screen_rect.right):
-                self.rect.centerx += 1
+                self.rect.centerx += 2
             if self.left_move and (self.rect.left > 0):
-                self.rect.centerx -= 1
+                self.rect.centerx -= 2
             if self.up_move and (self.rect.top > 0):
-                self.rect.centery -= 1
+                self.rect.centery -= 2
             if self.down_move and (self.rect.bottom < self.screen_rect.bottom):
-                self.rect.centery += 1
+                self.rect.centery += 2
 
     def select(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             print('proverka')
             if self.grani[0] < event.pos[0] < self.grani[1] and self.grani[2] < event.pos[1] < self.grani[3]:
                 self.selected = True
+                self.image = pygame.image.load('image/setler_selected.png')
             else:
                 self.selected = False
-                print('shit')
+                self.image = pygame.image.load('image/setler.png')
